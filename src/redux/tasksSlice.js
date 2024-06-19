@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { fetchTasks, addTask, deleteTask, toggleCompleted } from './operations';
 
 const handlePending = state => {
+    state.error = false;
     state.isLoading = true;
 };
 
@@ -43,6 +44,7 @@ const tasksSlice = createSlice({
                     task => task.id === action.payload.id
                 );
                 state.items.splice(index, 1)
+                // state.items = state.items.filter((item) => item.id !== action.payload.id) інший варіант видалення
             })
             .addCase(deleteTask.rejected, handleRejected)
             .addCase(toggleCompleted.pending, handlePending)

@@ -19,9 +19,9 @@ export const fetchTasks = createAsyncThunk(
 
 export const addTask = createAsyncThunk(
     'tasks/addTask',
-    async (text, thunkAPI) => {
+    async (newTask, thunkAPI) => {
         try {
-            const response = await axios.get('/tasks', { text });
+            const response = await axios.post('/tasks', newTask);
             return response.data;
         } catch (e) {
             return thunkAPI.rejectWithValue(e.message);
@@ -41,10 +41,10 @@ export const deleteTask = createAsyncThunk(
 );
 export const toggleCompleted = createAsyncThunk(
     'task/toggleCompleted',
-    async (task, thunkAPI) => {
+    async (toggle, thunkAPI) => {
         try {
-            const response = await axios.put(`/tasks/${task.id}`, {
-                completed: !task.completed,
+            const response = await axios.put(`/tasks/${toggle.id}`, {
+                completed: !toggle.completed,
             });
             return response.data;
         } catch (e) {
