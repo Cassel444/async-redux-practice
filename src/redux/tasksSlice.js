@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 import { fetchTasks, addTask, deleteTask, toggleCompleted } from './operations';
 
 const handlePending = state => {
-    state.error = false;
     state.isLoading = true;
 };
 
@@ -40,11 +39,8 @@ const tasksSlice = createSlice({
             .addCase(deleteTask.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.error = null;
-                const index = state.items.findIndex(
-                    task => task.id === action.payload.id
-                );
-                state.items.splice(index, 1)
-                // state.items = state.items.filter((item) => item.id !== action.payload.id) інший варіант видалення
+                const index = state.items.findIndex((task) => task.id === action.payload.id);
+                state.items.splice(index, 1);
             })
             .addCase(deleteTask.rejected, handleRejected)
             .addCase(toggleCompleted.pending, handlePending)
@@ -52,13 +48,13 @@ const tasksSlice = createSlice({
                 state.isLoading = false;
                 state.error = null;
                 const index = state.items.findIndex(
-                    task => task.id === action.payload.id
+                    (task) => task.id === action.payload.id
                 );
                 state.items.splice(index, 1, action.payload);
             })
-            .addCase(toggleCompleted.rejected, handleRejected);
+            .addCase(toggleCompleted.rejected, handleRejected)
 
-    },
+    }
 });
 
 
