@@ -42,7 +42,7 @@ const tasksSlice = createSlice({
                 const index = state.items.findIndex((task) => task.id === action.payload.id);
                 state.items.splice(index, 1);
                 // варіант видалення з пагінацією
-                // state.items = state.items.filter((contact) => contact.id !== action.payload.id);
+                // state.items = state.items.filter((task) => task.id !== action.payload.id);
                 // варіант видалення якщо немає пагінації
             })
             .addCase(deleteTask.rejected, handleRejected)

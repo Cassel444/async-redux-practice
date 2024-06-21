@@ -19,7 +19,8 @@ export const App = () => {
     <Layout>
       <AppBar />
       <TaskForm />
-      {isLoading && !error && <b>Request in progress...</b>}
+      {error && <b>Ooops... something went wrong</b>}
+      {isLoading && <b>Loading task...</b>}
       <TaskList />
     </Layout>
   );

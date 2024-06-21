@@ -10,7 +10,6 @@ export const selectStatusFilter = state => state.filters.status;
 export const selectVisibleTasks = createSelector(
     [selectTasks, selectStatusFilter],
     (tasks, statusFilter) => {
-        console.log("Calculating visible tasks. Now memoized!");
 
         switch (statusFilter) {
             case statusFilters.active:
@@ -22,8 +21,8 @@ export const selectVisibleTasks = createSelector(
         }
     }
 );
+
 export const selectTaskCount = createSelector([selectTasks], tasks => {
-    console.log("Calculating task count. Now memoized!");
 
     return tasks.reduce(
         (count, task) => {
